@@ -7,7 +7,7 @@ public class Employee extends Person {
         super(name, surname, age);
         this.employeeId = employeeId;
         this.salary = salary;
-        this.age = age;
+        this.experience = experience;
     }
 
     @Override
