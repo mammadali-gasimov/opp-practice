@@ -7,8 +7,10 @@ public class Main {
 
     public static void main(String[] args) {
         startProgram();
-        showMenu();
-        getUserChoice();
+        while (true) {
+            showMenu();
+            getUserChoice();
+        }
     }
 
     public static void showMenu() {
@@ -37,6 +39,21 @@ public class Main {
             case 4:
                 System.out.println("Enter department number:");
                 showAllEmployeesByDepartment(scanner.nextInt());
+                break;
+            case 5:
+                scanner.nextLine();
+                System.out.println("Enter employee name:");
+                searchByEmployeeName(scanner.nextLine());
+                break;
+            case 6:
+                scanner.nextLine();
+                System.out.println("Enter employee name:");
+                String name = scanner.nextLine();
+
+                System.out.println("Enter department number:");
+                int departmentNumber = scanner.nextInt();
+
+                searchByEmployeeNameAndDepartmentNumber(name, departmentNumber);
                 break;
         }
     }
@@ -187,6 +204,29 @@ public class Main {
                 for (Employee emp : dep.employeeList) {
                     System.out.println(emp.toString());
                 }
+            }
+        }
+    }
+
+    public static void searchByEmployeeName(String employeeName) {
+        for (Department dep : departmentList) {
+            for (Employee emp : dep.employeeList) {
+                if (emp != null && emp.name.toLowerCase().contains(employeeName.toLowerCase())) {
+                    System.out.println(emp.toString());
+                }
+            }
+        }
+    }
+
+    public static void searchByEmployeeNameAndDepartmentNumber(String employeeName, int departmentNumber) {
+        for (Department dep : departmentList) {
+            if (dep.departmentNo == departmentNumber) {
+                for (Employee emp : dep.employeeList) {
+                    if (emp != null && emp.name.toLowerCase().contains(employeeName.toLowerCase())) {
+                        System.out.println(emp.toString());
+                    }
+                }
+                break;
             }
         }
     }
